@@ -1,16 +1,16 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'categories' }) // Opcional: define el nombre de la tabla en plural
+@Entity({ name: 'categories' })
 export class Category {
-    @PrimaryGeneratedColumn()
-    id!: number;
+  @PrimaryGeneratedColumn()
+  id!: number;
 
-    @Column({ type: 'varchar', length: 100 })
-    name!: string;
+  @Column({ type: 'varchar', length: 100 })
+  name!: string;
 
-    @Column({ type: 'varchar', length: 255, nullable: true })
-    description?: string;
+  @Column({ type: 'varchar', length: 255, nullable: true })
+  description!: string;
 
-    @Column({ type: 'boolean', default: true }) // <- AQUÍ ESTABA EL ERROR
+  @Column({ type: 'boolean', default: true })
   active!: boolean;
 }

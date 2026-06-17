@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { RegisterDto } from './dto/Register.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
@@ -22,7 +22,7 @@ export class UsersService {
   }
 
   async findByEmail(email: string) {
-    return this.usersRepository
+    return this.userRepo
       .createQueryBuilder('user')
       .addSelect('user.password')
       .where('user.email = :email', { email })
@@ -30,7 +30,7 @@ export class UsersService {
   }
 
   async findById(id: number) {
-    return this.usersRepository.findOne({ where: { id } });
+    return this.userRepo.findOne({ where: { id } });
   }
 
   findAll() {
